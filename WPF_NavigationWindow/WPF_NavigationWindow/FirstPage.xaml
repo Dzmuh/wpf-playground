@@ -1,0 +1,8 @@
+﻿<Page x:Class="WPF_NavigationWindow.FirstPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="First Page">
+    <DockPanel>
+		<TextBlock Style="{StaticResource HeaderTextBlock}">First Page</TextBlock>
+    </DockPanel>
+</Page>
