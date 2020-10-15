@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:linq2Xml="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq"
+                    xmlns:linq="clr-namespace:Linq2Sql;assembly=Linq2Sql"                    
+                    xmlns:local="clr-namespace:WpfGuiProject">
+    <!--Шаблон иерархического отображения экземпляров класса TreeTable В СЛУЧАЕ ПОДКЛЮЧЕНИЯ К БАЗЕ ДАННЫХ-->
+    <HierarchicalDataTemplate DataType="{x:Type linq:Category}">
+        <!--Указываю источник данных, на основании которого должно формироваться дерево разделов-->
+        <HierarchicalDataTemplate.ItemsSource>
+            <Binding Path=".">
+                <!--Указываю конвертер, который позволяет получить список дочерних элементов типа Category, по отношению к данному-->
+                <Binding.Converter>
+                    <local:CategoryValueConverter/>
+                </Binding.Converter>
+            </Binding>
+        </HierarchicalDataTemplate.ItemsSource>
+        <!--Формирую визуальное представление элемента, отображаемого в дереве разделов-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Path=CategoryName}">
+                <TextBlock.ToolTip>
+                    <Binding Path="Description"/>
+                </TextBlock.ToolTip>
+            </TextBlock>
+            <TextBlock Name="txtLeft" Text=" (" Grid.Column="1"/>
+            <TextBlock Name="txtCount"  Text="{Binding Path=Books.Count}" Grid.Column="2"/>
+            <TextBlock Name="txtRight" Text=")" Grid.Column="3"/>
+        </Grid>
+    </HierarchicalDataTemplate>
+    <!--Шаблон отображения экземпляров класса Book В СЛУЧАЕ ПОДКЛЮЧЕНИЯ К БАЗЕ ДАННЫХ-->
+    <DataTemplate DataType="{x:Type linq:Book}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Path=BookName}">
+                <TextBlock.ToolTip>
+                    <Binding Path="Description"/>
+                </TextBlock.ToolTip>
+            </TextBlock>
+        </Grid>        
+    </DataTemplate>
+
+    <!--Шаблон иерархического отображения данных В СЛУЧАЕ ПОДКЛЮЧЕНИЯ К XML-ФАЙЛУ -->
+    <HierarchicalDataTemplate DataType="{x:Type linq2Xml:XElement}">
+        <!--Указываю источник данных, на основании которого должно формироваться дерево разделов-->
+        <HierarchicalDataTemplate.ItemsSource>
+            <Binding Path=".">
+                <!--Указываю конвертер, который позволяет получить список дочерних элементов типа Category, по отношению к данному-->
+                <Binding.Converter>
+                    <local:XmlConverter/>
+                </Binding.Converter>
+            </Binding>
+        </HierarchicalDataTemplate.ItemsSource>
+        <!--Формирую визуальное представление элемента, отображаемого в дереве разделов-->
+        <TextBlock Text="{Binding Path=Attribute[CategoryName].Value}">
+                <TextBlock.ToolTip>
+                    <Binding Path="Attribute[ToolTipText].Value"/>
+                </TextBlock.ToolTip>
+        </TextBlock>
+    </HierarchicalDataTemplate>
+</ResourceDictionary>

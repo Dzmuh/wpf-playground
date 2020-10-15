@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MyXmlDocument>
+  <Category CategoryName="Компьютерная литература" Description ="Различная литература по компьютерной тематике" ToolTipText="Мой раздел">
+    <Category CategoryName="Windows-приложения" Description ="Данная ОС наиболее популярна" ToolTipText="Моя ось">
+      <Category CategoryName="MS Office 2007" Description ="Офисный пакет программ" ToolTipText="Мой офис"/>
+      <Category CategoryName="Продукция компании Autodesk" Description ="Различные САПР" ToolTipText="Мой выбор">
+        <Category CategoryName="AutoCAD" Description ="Самый распространённый САПР" ToolTipText="Мой САПР">
+          <Book BookName ="AutoCAD 2010. Полещук Н.Н." Description ="Моя книжка по данному САПР" ToolTipText="Справочник"/>
+          <Book BookName ="AutoCAD 2007, библия пользователя. (автора не помню)" Description ="Ещё одна моя книжка по данному САПР" ToolTipText="Справочник"/>
+        </Category>
+        <Category CategoryName="Revit" Description ="новое поколение САПР (BIM)" ToolTipText="Пока ещё не мой САПР"/>        
+      </Category>
+    </Category>
+    <Category CategoryName="Linux-приложения" Description ="Свободно распространяемая ОС" ToolTipText="Интересно, но не сильно распространено"/>
+  </Category>
+  <Category CategoryName="Классика" Description ="Классическая литература" ToolTipText="Полезно для общего развития">
+    <Category CategoryName="Поэзия" Description ="Стихи отечественных авторов" ToolTipText="Для души"/>
+    <Category CategoryName="Повести и рассказы" Description ="Повести и рассказы отечественных авторов" ToolTipText="Это тоже для души"/>
+  </Category>  
+</MyXmlDocument>

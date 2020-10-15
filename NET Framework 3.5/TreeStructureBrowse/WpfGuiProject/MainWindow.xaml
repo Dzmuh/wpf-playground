@@ -1,0 +1,49 @@
+﻿<Window x:Class="WpfGuiProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:linq="clr-namespace:Linq2Sql;assembly=Linq2Sql"
+        xmlns:local="clr-namespace:WpfGuiProject"
+        Title="Иерархическое отображение данных с помощью привязки" Height="350" Width="525">
+    <!--Подключаем файл ресурсов-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary1.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!--Формируем визуальное содержимое окна-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--Отображаем древовидную структуру-->
+        <TreeView Name="treeStructure" Margin="2" Grid.Row="1"/>
+        <!--Отображаем примечания для выбранного в иерархии элемента-->
+        <GroupBox Header="Примечание" Margin="2" Grid.Row="2">
+            <TextBlock Name="selectedNodeDescription" TextWrapping="Wrap" Text="{Binding ElementName=treeStructure, Path=SelectedItem.Description}" />
+        </GroupBox>
+        <GridSplitter Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="3"/>
+        <ListBox Name="listBooks" Margin="2" Grid.Column="2" Grid.RowSpan="2" ItemsSource="{Binding ElementName=treeStructure, Path=SelectedItem.Books}"/>
+        <GroupBox Header="Примечание" Margin="2" Grid.Column="2" Grid.Row="2">
+            <TextBlock Name="selectedBookDescription" TextWrapping="Wrap" Text="{Binding ElementName=listBooks, Path=SelectedItem.Description}" />
+        </GroupBox>
+        <!--Предоставляем пользователю выбрать интересующий его источник данных. Данный блок обязательно должен размещаться ПОСЛЕ XAML-разметки, в которой определён
+        элемент treeStructure (см. строку 28). Это требование обусловлено тем, что XAML-разметка элементов RadioButton содержит в себе регистрацию
+        события Checked, в теле которого, в свою очередь присутствует код, использующий элемент treeStructure, а по правилам XAML-документов, нельзя использовать элемент
+        раньше, чем он будет определён-->
+        <GroupBox Header="Источник данных" Margin="2">
+            <StackPanel Margin="2">
+                <RadioButton Name="rbDatabase" Content="База данных MS SQL Server" IsChecked="True" Checked="Change_DataSource"/>
+                <RadioButton Name="rbXmlFile" Content="XML-файл" IsChecked="False" Checked="Change_DataSource"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
