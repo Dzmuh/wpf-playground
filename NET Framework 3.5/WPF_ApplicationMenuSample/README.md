@@ -1,5 +1,7 @@
 # WPF - MenuItem и важное свойство CommandTarget
 
+Работает только с .NET Framework 3.5.
+
 * Источник: <http://outcoldman.ru/ru/blog/show/148> \ 06.08.2009 00:12
 * <zotero://attachment/7454/>
 
