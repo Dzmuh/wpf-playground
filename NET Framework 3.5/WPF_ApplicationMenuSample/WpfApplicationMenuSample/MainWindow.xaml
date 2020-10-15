@@ -1,0 +1,13 @@
+﻿<Window x:Class="WpfApplicationMenuSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WpfApplicationMenuSample="clr-namespace:WpfApplicationMenuSample"
+        Title="Sample" Height="150" Width="300">
+    <DockPanel>
+        <WpfApplicationMenuSample:MainUserControl DockPanel.Dock="Top"/>
+        <DockPanel>
+            <TextBox DockPanel.Dock="Top"/>
+            <Button >Click</Button>
+        </DockPanel>
+    </DockPanel>
+</Window>
