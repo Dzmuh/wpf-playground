@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Title>WPF_NavigationWindow</Title>
+    <Authors>Dzmuh</Authors>
+    <Company>dzmuh.com</Company>
+    <Copyright>Copyright © Dzmuh 2022</Copyright>
+  </PropertyGroup>
+
+</Project>
